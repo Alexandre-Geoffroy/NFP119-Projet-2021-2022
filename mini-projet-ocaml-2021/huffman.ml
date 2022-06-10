@@ -1,4 +1,8 @@
 (* NFP119 - Projet session 2021-2022. *)
+(*
+N'ayent pas réussie a crée le code je vais décrire le fonctionnement que j'aurai voulue crée 
+*)
+
 exception Pas_encore_implante
 (* Le type qui représente 1 bit. *)
 type bit = O | I ;;
@@ -8,23 +12,84 @@ type cle =
 | Feuille of char
 | Choix of cle * cle;;
 
+
 (* ****************** DÉCODAGE **************** *)
-(* Écrivez ici les fonctions demandée *)
 
-
-(* Solution en deux étapes comme demandé dans l'énoncé *)
 let rec decode_char (c:cle) (lb:bit list) =
-raise Pas_encore_implante (* REMPLIR ICI *)
+Printf.printf " un truc ";;
+(*
+Dans l'arbre sélctioner (avec la clef fournie en paramètre de la fonction):
+On utilise chaque bit de la liste fournie pour navigé dans l'arbre au travers des noeud (si 0 fils de gauche, si 1 fils de droite),
+Une fois arrivé sur une feuille, on vérifier si un char est trouvé, 
+Si un char est trouvé alors on le return avec sont code (ex:101)
+si non on return false | None
+
+Pour cette fonction je voulais utilisé le programme suivant :
+celui ci me permet de trouvé dans un arbre si un caratère existe.
+Avec quelque modification de ce code j'aurai pu l'adapté a nos besoins avec les 1 et 0 de la liste de bit.
+Mais par manque de temps j'e n'ai pas pu.
+
+
+let rec existe cond = function
+    Feuille x  ->  cond x
+  | Choix (g,d) -> existe cond g || existe cond d;;
+
+
+existe (fun x -> x = 'B') (cle1);;
+existe (fun x -> x = 'r') (cle1);;
+existe (fun x -> x = 'k') (cle1);;
+existe (fun x -> x = 'o') (cle1);;
+existe (fun x -> x = ' ') (cle1);;
+ *)
+
+
 
 let decode (lb:bit list) (c:cle): string =
-raise Pas_encore_implante (* REMPLIR ICI *)
+raise Pas_encore_implante
+(*
+Cette contion est similaire a "decode_char" au dessus
+sauf que au lieux de retourner un seul char on retoune la concaténation des char trouvé.
+
+ex : résultat = résultat + (char trouvé);;
+Voila
+*)
+
+
+
 
 let encode_char ch cle =
-raise Pas_encore_implante (* REMPLIR ICI *)
+raise Pas_encore_implante
+(*
+Dans l'arbre sélctioner (avec la clef fournie en paramètre de la fonction):
+On cherche si le caratère fournie en paramètre existe ou non
+Si un char est trouvé alors on le return avec sont code (ex:101)
+si non on return false
+
+Pour cette fonction je voulais utilisé le programme ci-dessous :
+celui ci me permet de trouvé dans un arbre si un caratère existe.
+Avec quelque modification j'airai pu ajouté le fait qu'elle retoune la liste de bit.
+Car avec cette fonction 80% tu travaille etait bon
+Mais par manque de temps je n'ai pas pu.
+
+let rec existe cond = function
+    Feuille x  ->  cond x
+  | Choix (g,d) -> existe cond g || existe cond d;;
+
+existe (fun x -> x = 'B') (cle1);;
+existe (fun x -> x = 'r') (cle1);;
+existe (fun x -> x = 'k') (cle1);;
+existe (fun x -> x = 'o') (cle1);;
+existe (fun x -> x = ' ') (cle1);;
+ 
+*)
 
 
 let decomp_cle (c:cle): (char*bit list) list =
-raise Pas_encore_implante (* REMPLIR ICI *)
+raise Pas_encore_implante
+(*Fonction non demander*)
+
+
+
 
 
 
@@ -162,4 +227,3 @@ let _ = gen_test "1000001100000" cle2 "stc";;
 let _ = gen_test_fail "0011000" cle2;;
 
 let s3 = gen_test "000111010110011110011000011101100101110101110101101001" cle2 "Bonjour le monde";;
-
